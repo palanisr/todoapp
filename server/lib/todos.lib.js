@@ -7,15 +7,22 @@ module.exports = function(System){
     getTodos:function(param1, callback){
       Todos.find().limit().exec(function(err,results){
         if(err) return callback(err);
-        console.log('Results');
+        console.log('Returning Results');
         callback(null,results);
       })
     },
     getTodosById:function(id,callback){
       Todos.findById(id,function(err,results){
         if(err) return callback(err);
-        console.log('Results');
+        console.log('found _id:'+id);
         callback(null,results);
+      })
+    },
+    deleteaTodos:function(id,callback){
+      Todos.findByIdAndRemove(id,function(err,result){
+        if(err) return callback(err);
+        console.log('Removing _id:'+id);
+        callback(null,null);
       })
     }
   };
